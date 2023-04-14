@@ -5,6 +5,10 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moveez (A movie ticket management System)", "Moveez (A movie ticket management System)\Moveez (A movie ticket management System).csproj", "{8A688DAF-4D54-462B-B3B4-F9CE72C838C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{00DCD64E-B55B-49A8-8CB4-577174F948EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{81B105DC-8C20-4ADB-B1CA-0782420D74D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{8A688DAF-4D54-462B-B3B4-F9CE72C838C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A688DAF-4D54-462B-B3B4-F9CE72C838C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A688DAF-4D54-462B-B3B4-F9CE72C838C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00DCD64E-B55B-49A8-8CB4-577174F948EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00DCD64E-B55B-49A8-8CB4-577174F948EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00DCD64E-B55B-49A8-8CB4-577174F948EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00DCD64E-B55B-49A8-8CB4-577174F948EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81B105DC-8C20-4ADB-B1CA-0782420D74D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81B105DC-8C20-4ADB-B1CA-0782420D74D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81B105DC-8C20-4ADB-B1CA-0782420D74D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81B105DC-8C20-4ADB-B1CA-0782420D74D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
