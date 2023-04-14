@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moveez (A movie ticket management System)", "Moveez (A movie ticket management System)\Moveez (A movie ticket management System).csproj", "{8A688DAF-4D54-462B-B3B4-F9CE72C838C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A688DAF-4D54-462B-B3B4-F9CE72C838C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A688DAF-4D54-462B-B3B4-F9CE72C838C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A688DAF-4D54-462B-B3B4-F9CE72C838C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A688DAF-4D54-462B-B3B4-F9CE72C838C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {980D764E-581A-4452-94BB-EB5705B3F352}
+	EndGlobalSection
+EndGlobal
