@@ -38,7 +38,7 @@ namespace DAL.Repos
         public bool Update(Movie obj)
         {
             
-            var existingMovie = db.Movies.Find(obj.Id);
+            var existingMovie = db.Movies.Find(obj.MovieId);
             if (existingMovie != null) {
                 existingMovie.Title = obj.Title;
                 existingMovie.Description = obj.Description;
