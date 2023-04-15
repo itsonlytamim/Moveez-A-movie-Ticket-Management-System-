@@ -11,7 +11,8 @@ namespace DAL.Models
 {
     public class Movie
     {
-        public int MovieId { get; set; }
+        [Key]
+        public int Id { get; set; }
         [Required]
         public string Title { get; set; }
         public string Description { get; set; }
