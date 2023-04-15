@@ -11,9 +11,12 @@ namespace DAL.Models
     public class Notification
     {
         public int Id { get; set; }
+
         [Required]
         public string Message { get; set; }
+
         public int UserId { get; set; }
+
         [ForeignKey("UserId")]
         public User User { get; set; }
     }

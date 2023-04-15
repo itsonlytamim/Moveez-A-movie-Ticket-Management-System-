@@ -15,14 +15,19 @@ namespace DAL.Models
         public string Name { get; set; }
         [Required]
         public int Quantity { get; set; }
+
         [Required]
         public int Price { get; set; }
+
         [Required]
         public int MovieId { get; set; }
+
         [ForeignKey("MovieId")]
         public Movie Movie { get; set; }
+
         [Required]
         public int OrderId { get; set; }
+
         [ForeignKey("OrderId")]
         public Order Order { get; set; }
     }
