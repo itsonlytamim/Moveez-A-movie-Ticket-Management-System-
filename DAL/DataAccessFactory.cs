@@ -19,7 +19,10 @@ namespace DAL
         {
             return new MovieRepo();
         }
-
+        public static IRepo<User, int, bool> UserData()
+        {
+            return new UserRepo();
+        }
 
     }
 }

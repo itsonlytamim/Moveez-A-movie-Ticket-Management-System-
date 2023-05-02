@@ -12,7 +12,6 @@ namespace DAL.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [StringLength(50)]
         public string Name { get; set; }
         [Required]
         public string Email { get; set; }
@@ -25,8 +24,12 @@ namespace DAL.Models
         public string Gender { get; set; }
         public bool IsVerified { get; set; }
         public string Address { get; set; }
-        public byte[] Photo { get; set; }
+        public string Photo { get; set; }
         public DateTime CreatedAt { get; set; }
+        public User()
+        {
+            CreatedAt = DateTime.UtcNow;
+        }
     }
 
 }

@@ -58,6 +58,26 @@
     <Compile Include="Migrations\202304141733384_AddingTables.designer.cs">
       <DependentUpon>202304141733384_AddingTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305011339244_UserImgTypeChange.cs" />
+    <Compile Include="Migrations\202305011339244_UserImgTypeChange.designer.cs">
+      <DependentUpon>202305011339244_UserImgTypeChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305011351223_nametypechangeofuser.cs" />
+    <Compile Include="Migrations\202305011351223_nametypechangeofuser.designer.cs">
+      <DependentUpon>202305011351223_nametypechangeofuser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305011405152_UserTableChanges.cs" />
+    <Compile Include="Migrations\202305011405152_UserTableChanges.designer.cs">
+      <DependentUpon>202305011405152_UserTableChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305011432117_UserTableChangesfinal.cs" />
+    <Compile Include="Migrations\202305011432117_UserTableChangesfinal.designer.cs">
+      <DependentUpon>202305011432117_UserTableChangesfinal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305011435061_UserTableChangesfinal1.cs" />
+    <Compile Include="Migrations\202305011435061_UserTableChangesfinal1.designer.cs">
+      <DependentUpon>202305011435061_UserTableChangesfinal1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Actor.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -95,6 +115,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202304141733384_AddingTables.resx">
       <DependentUpon>202304141733384_AddingTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305011339244_UserImgTypeChange.resx">
+      <DependentUpon>202305011339244_UserImgTypeChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305011351223_nametypechangeofuser.resx">
+      <DependentUpon>202305011351223_nametypechangeofuser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305011405152_UserTableChanges.resx">
+      <DependentUpon>202305011405152_UserTableChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305011432117_UserTableChangesfinal.resx">
+      <DependentUpon>202305011432117_UserTableChangesfinal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305011435061_UserTableChangesfinal1.resx">
+      <DependentUpon>202305011435061_UserTableChangesfinal1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
