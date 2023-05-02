@@ -14,7 +14,7 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
     {
         [HttpGet]
         [Route("")]
-        public HttpResponseMessage Get()
+        public HttpResponseMessage GetAllCinemahalls()
         {
             try
             {

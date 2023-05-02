@@ -40,7 +40,20 @@ namespace DAL
             return new CinemahallRepo();
         }
 
+        public static IRepo<User, int, bool> UserData()
+        {
+            return new UserRepo();
+        }
 
+        public static IRepo<Order, int, bool> OrderData()
+        {
+            return new OrderRepo();
+        }
+
+        public static IRepo<OrderDetail, int, bool> OrderDetailData()
+        {
+            return new OrderDetailRepo();
+        }
 
     }
 }

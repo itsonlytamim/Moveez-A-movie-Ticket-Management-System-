@@ -5,14 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace Moveez__A_movie_ticket_management_System_.Controllers
 {
-    [RoutePrefix("api/tickets")]
-    public class TicketController : ApiController
+    [RoutePrefix("api/users")]
+    public class UserController : ApiController
     {
-       /* public TicketController()
+        public UserController()
         {
 
         }
@@ -23,8 +24,8 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
         {
             try
             {
-                var tickets = TicketService.Get();
-                return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Success", Data = tickets });
+                var users = UserService.Get();
+                return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Success", Data = users });
             }
             catch (Exception ex)
             {
@@ -38,8 +39,8 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
         {
             try
             {
-                var ticket = TicketService.Get(id);
-                return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Success", Data = ticket });
+                var user = UserService.Get(id);
+                return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Success", Data = user });
             }
             catch (Exception ex)
             {
@@ -49,45 +50,45 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
 
         [HttpPost]
         [Route("add")]
-        public HttpResponseMessage Add(TicketDTO ticket)
+        public HttpResponseMessage Add(UserDTO user)
         {
             try
             {
-                var res = TicketService.Create(ticket);
+                var res = UserService.Create(user);
                 if (res)
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Inserted", Data = ticket });
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Inserted", Data = user });
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = "Not Inserted", Data = ticket });
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = "Not Inserted", Data = user });
                 }
             }
             catch (Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = ex.Message, Data = ticket });
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = ex.Message, Data = user });
             }
         }
 
         [HttpPut]
         [Route("update/{id}")]
-        public HttpResponseMessage Update(int id, TicketDTO ticket)
+        public HttpResponseMessage Update(int id, UserDTO user)
         {
             try
             {
-                var res = TicketService.Update(id, ticket);
+                var res = UserService.Update(id, user);
                 if (res)
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Updated", Data = ticket });
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Updated", Data = user });
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = "Not Updated", Data = ticket });
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = "Not Updated" });
                 }
             }
             catch (Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = ex.Message, Data = ticket });
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = ex.Message });
             }
         }
 
@@ -97,7 +98,7 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
         {
             try
             {
-                var res = TicketService.Delete(id);
+                var res = UserService.Delete(id);
                 if (res)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Deleted" });
@@ -111,6 +112,7 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = ex.Message });
             }
-        }*/
+        }
+
     }
 }

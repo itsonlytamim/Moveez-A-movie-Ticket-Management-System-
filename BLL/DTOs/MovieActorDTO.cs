@@ -8,9 +8,12 @@ namespace BLL.DTOs
 {
     public class MovieActorDTO
     {
+       public int Id { get; set; }
         public int MovieId { get; set; }
         public int ActorId { get; set; }
-        public string CharacterName { get; set; }
+        
+
+        
     }
 }
 

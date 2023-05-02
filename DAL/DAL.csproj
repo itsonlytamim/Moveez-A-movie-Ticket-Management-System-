@@ -58,6 +58,10 @@
     <Compile Include="Migrations\202304141733384_AddingTables.designer.cs">
       <DependentUpon>202304141733384_AddingTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305021743147_usertablemodify.cs" />
+    <Compile Include="Migrations\202305021743147_usertablemodify.designer.cs">
+      <DependentUpon>202305021743147_usertablemodify.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Actor.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -95,6 +99,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202304141733384_AddingTables.resx">
       <DependentUpon>202304141733384_AddingTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305021743147_usertablemodify.resx">
+      <DependentUpon>202305021743147_usertablemodify.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -59,9 +59,10 @@ namespace BLL.Services
         {
             return new MovieActor()
             {
-                Id = movieActor.Id,
+                Id= movieActor.Id,
                 MovieId = movieActor.MovieId,
-                ActorId = movieActor.ActorId
+                ActorId = movieActor.ActorId,
+                
             };
         }
 
@@ -69,7 +70,7 @@ namespace BLL.Services
         {
             return new MovieActorDTO()
             {
-                Id = movieActor.Id,
+                
                 MovieId = movieActor.MovieId,
                 ActorId = movieActor.ActorId
             };
