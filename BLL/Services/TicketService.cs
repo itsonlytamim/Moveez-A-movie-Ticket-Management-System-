@@ -11,7 +11,7 @@ namespace BLL.Services
 {
     public class TicketService
     {
-        /*public static List<TicketDTO> Get()
+        public static List<TicketDTO> Get()
         {
             var data = DataAccessFactory.TicketData().Get();
             return Convert(data);
@@ -80,6 +80,6 @@ namespace BLL.Services
                 Price = ticket.Price,
                 MovieId = ticket.MovieId
             };
-        }*/
+        }
     }
 }

@@ -9,11 +9,11 @@ namespace BLL.DTOs
     public class TicketDTO
     {
         public int Id { get; set; }
-        public int MovieId { get; set; }
-        public int CinemahallId { get; set; }
-        public int SeatNumber { get; set; }
-        public DateTime ShowTime { get; set; }
+        public string Type { get; set; }
         public decimal Price { get; set; }
+        public int MovieId { get; set; }
     }
+
+  
 
 }

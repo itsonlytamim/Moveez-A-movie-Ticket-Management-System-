@@ -12,7 +12,7 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
     [RoutePrefix("api/tickets")]
     public class TicketController : ApiController
     {
-       /* public TicketController()
+        public TicketController()
         {
 
         }
@@ -71,11 +71,11 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
 
         [HttpPut]
         [Route("update/{id}")]
-        public HttpResponseMessage Update(int id, TicketDTO ticket)
+        public HttpResponseMessage Update( TicketDTO ticket)
         {
             try
             {
-                var res = TicketService.Update(id, ticket);
+                var res = TicketService.Update( ticket);
                 if (res)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Updated", Data = ticket });
@@ -111,6 +111,6 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = ex.Message });
             }
-        }*/
+        }
     }
 }
