@@ -24,5 +24,15 @@ namespace DAL
             return new UserRepo();
         }
 
+        public static IRepo<Order, int, bool> OrderData()
+        {
+            return new OrderRepo();
+        }
+
+        public static IRepo<OrderDetail, int, bool> OrderDetailData()
+        {
+            return new OrderDetailRepo();
+        }
+
     }
 }

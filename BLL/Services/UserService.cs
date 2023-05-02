@@ -17,19 +17,36 @@ namespace BLL.Services
             return data.Select(Convert).ToList();
         }
 
-       
-       public static UserDTO Get(int id)
+        public static bool IsAdmin(int Id)
+        {
+            var user = DataAccessFactory.UserData().Get(Id);
+
+            if (user != null && user.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+            return false;
+        }
+        public static UserDTO Get(int id)
         {
             return Convert(DataAccessFactory.UserData().Get(id));
         }
 
         public static bool Create(UserDTO user)
-        {         
+        {
             var data = Convert(user);
+            var existingUser = DataAccessFactory.UserData().Get().FirstOrDefault(u => u.Email == data.Email);
+
+            if (existingUser != null)
+            {
+                return false; // User already exists, return false
+            }
+
             var res = DataAccessFactory.UserData().Insert(data);
 
-            return res != null;
+            return res =true;
         }
+
 
         public static bool Delete(int id)
         {
