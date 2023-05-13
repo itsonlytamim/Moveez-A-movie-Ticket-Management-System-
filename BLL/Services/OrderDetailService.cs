@@ -26,8 +26,8 @@ namespace BLL.Services
         {
             var data = Convert(orderDetail);
             var res = DataAccessFactory.OrderDetailData().Insert(data);
-
-            return res != null;
+                
+            return res = true;
         }
 
         public static bool Delete(int id)
@@ -40,7 +40,7 @@ namespace BLL.Services
             var data = Convert(orderDetail);
             var res = DataAccessFactory.OrderDetailData().Update(data);
 
-            return res != null;
+            return res = true;
         }
 
         public static bool Update(int id, OrderDetailDTO orderDetail)
@@ -56,7 +56,7 @@ namespace BLL.Services
 
             var res = DataAccessFactory.OrderDetailData().Update(existingOrderDetail);
 
-            return res != null;
+            return res = true;
         }
 
         private static OrderDetailDTO Convert(OrderDetail orderDetail)
