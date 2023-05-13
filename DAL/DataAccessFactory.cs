@@ -49,5 +49,10 @@ namespace DAL
 
             return new NotificationRepo();
         }
+
+        public static IAuth<bool> AuthData()
+        {
+            return new UserRepo();
+        }
     }
 }

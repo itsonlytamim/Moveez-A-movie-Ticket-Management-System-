@@ -19,6 +19,7 @@ namespace Moveez__A_movie_ticket_management_System_
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.EnableCors();
         }
     }
 }

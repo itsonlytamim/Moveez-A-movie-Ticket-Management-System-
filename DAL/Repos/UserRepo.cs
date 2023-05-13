@@ -5,9 +5,17 @@ using System.Linq;
 
 namespace DAL.Repos
 {
-    internal class UserRepo : Repo, IRepo<User, int, bool>
+    internal class UserRepo : Repo, IRepo<User, int, bool>, IAuth<bool>
     {
         public UserRepo() : base() { }
+
+        public bool Authenticate(string Email, string Password)
+        {
+            var data = db.Users.FirstOrDefault(u => u.Email.Equals(Email) &&
+            u.Password.Equals(Password));
+            if (data != null) return true;
+            return false;
+        }
 
 
         public List<User> Get()
