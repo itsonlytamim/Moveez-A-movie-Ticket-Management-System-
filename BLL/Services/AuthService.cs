@@ -38,7 +38,15 @@ namespace BLL.Services
             var mapper = mapperConfig.CreateMapper();
             return mapper.Map<TokenDto>(token);
         }
-
+        public static int GetUserId(int tokenId)
+        {
+            var token = DataAccessFactory.TokenData().Get(tokenId);
+            if (token != null)
+            {
+                return token.UserId;
+            }
+            return -1; 
+        }
         public static bool IsAuthorized(int tokenId)
         {
             var token = DataAccessFactory.TokenData().Get(tokenId);

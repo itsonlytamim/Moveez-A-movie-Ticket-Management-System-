@@ -7,9 +7,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Moveez__A_movie_ticket_management_System_.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/users")]
     public class UserController : ApiController
     {
@@ -32,14 +34,22 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = ex.Message });
             }
         }
-
         [HttpGet]
-        [Route("{id}")]
-        public HttpResponseMessage Get(int id)
+        [Route("get/{tokenId}")]
+        public HttpResponseMessage Get(int tokenId)
         {
             try
             {
-                var user = UserService.Get(id);
+                // Check if the token is authorized and belongs to the user
+                if (!AuthService.IsAuthorized(tokenId))
+                {
+                    return Request.CreateResponse(HttpStatusCode.Unauthorized, new { Msg = "Unauthorized" });
+                }
+
+                // Get the user details
+                int userId = AuthService.GetUserId(tokenId);
+                var user = UserService.Get(userId);
+
                 return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Success", Data = user });
             }
             catch (Exception ex)
@@ -47,6 +57,21 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = ex.Message });
             }
         }
+
+        //[httpget]
+        //[route("{id}")]
+        //public httpresponsemessage get(int id)
+        //{
+        //    try
+        //    {
+        //        var user = userservice.get(id);
+        //        return request.createresponse(httpstatuscode.ok, new { msg = "success", data = user });
+        //    }
+        //    catch (exception ex)
+        //    {
+        //        return request.createresponse(httpstatuscode.internalservererror, new { msg = ex.message });
+        //    }
+        //}
 
         [HttpPost]
         [Route("add")]

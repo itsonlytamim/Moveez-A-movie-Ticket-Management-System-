@@ -10,9 +10,6 @@ using System.Web.Http;
 namespace Moveez__A_movie_ticket_management_System_.Controllers
 {
     
-
-
-
     
         [RoutePrefix("api/movies")]
         public class MovieController : ApiController
@@ -21,8 +18,6 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
         {
 
         }
-
-       
 
             [HttpGet]
             [Route("")]

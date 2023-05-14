@@ -12,7 +12,7 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
 {
     public class LoginController : ApiController
     {
-        [EnableCors("*", "*", "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         [HttpPost]
         [Route("api/login")]
 
@@ -21,14 +21,28 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
 
 
             var res = AuthService.Authenticate(login.Email, login.Password);
-            if (res!=null)
+            if (res != null)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, new
+                var tokenId = res.Id;
+
+                if (AuthService.IsAdmin(res.Id))
                 {
-                    Status = "Success",
-                    Message = "Login successful",
-                    Data = res
-                });
+                    return Request.CreateResponse(HttpStatusCode.OK, new
+                    {
+                        Status = "Success",
+                        Message = "Login successful",
+                        Data = tokenId
+                    });
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, new
+                    {
+                        Status = "Success",
+                        Message = "Login successful",
+                        Data = tokenId
+                    });
+                }
             }
             else
             {
