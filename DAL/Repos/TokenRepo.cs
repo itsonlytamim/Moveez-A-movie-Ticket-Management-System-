@@ -20,8 +20,8 @@ namespace DAL.Repos
         public bool Insert(Token entity)
         {
             db.Tokens.Add(entity);
-            db.SaveChanges();
-            return true;
+            if (db.SaveChanges() > 0) return true;
+            return false;
         }
 
         public bool Delete(int id)

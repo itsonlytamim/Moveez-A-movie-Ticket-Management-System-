@@ -27,7 +27,7 @@ namespace BLL.Services
             var data = Convert(movie);
             var res = DataAccessFactory.MovieData().Insert(data);
 
-            if (res != null) return true;
+            if (res) return true;
             return false;
         }
 

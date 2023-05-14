@@ -55,6 +55,7 @@
     <Compile Include="DataAccessFactory.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IRepo.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Migrations\202304141733384_AddingTables.cs" />
     <Compile Include="Migrations\202304141733384_AddingTables.designer.cs">
       <DependentUpon>202304141733384_AddingTables.cs</DependentUpon>
@@ -78,6 +79,10 @@
     <Compile Include="Migrations\202305011435061_UserTableChangesfinal1.cs" />
     <Compile Include="Migrations\202305011435061_UserTableChangesfinal1.designer.cs">
       <DependentUpon>202305011435061_UserTableChangesfinal1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305141133562_tokendb.cs" />
+    <Compile Include="Migrations\202305141133562_tokendb.designer.cs">
+      <DependentUpon>202305141133562_tokendb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Actor.cs" />
@@ -133,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305011435061_UserTableChangesfinal1.resx">
       <DependentUpon>202305011435061_UserTableChangesfinal1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305141133562_tokendb.resx">
+      <DependentUpon>202305141133562_tokendb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

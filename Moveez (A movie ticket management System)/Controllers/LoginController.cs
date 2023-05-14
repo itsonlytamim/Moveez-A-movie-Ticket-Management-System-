@@ -47,7 +47,7 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
         {
             try
             {
-                var tokens = TokenService.GetTokens(id);
+                var tokens = TokenService.Get(id);
                 return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Success", Data = tokens });
             }
             catch (Exception ex)

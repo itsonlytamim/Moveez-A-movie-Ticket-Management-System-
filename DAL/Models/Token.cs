@@ -18,7 +18,7 @@ namespace DAL.Models
         public string TokenString { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }
-        public DateTime ExpiresAt { get; set; }
+        public DateTime? ExpiresAt { get; set; }
         [ForeignKey("UserId")]
         public User User { get; set; }
         public Token()
