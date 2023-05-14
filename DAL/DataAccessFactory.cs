@@ -54,5 +54,10 @@ namespace DAL
         {
             return new UserRepo();
         }
+
+        public static IRepo<Token, int, bool> TokenData()
+        {
+            return new TokenRepo();
+        }
     }
 }

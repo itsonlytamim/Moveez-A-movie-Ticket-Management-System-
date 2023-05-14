@@ -21,7 +21,7 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
 
 
             var res = AuthService.Authenticate(login.Email, login.Password);
-            if (res)
+            if (res!=null)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, new
                 {

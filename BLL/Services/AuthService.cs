@@ -14,10 +14,21 @@ namespace BLL.Services
         {
             return DataAccessFactory.AuthData().Authenticate(email, password);
         }
-        public static User GetUser(int id)
+
+        public static string Authenticate(string email, string password)
         {
-            var usr= DataAccessFactory.UserData().Get(id);
-            return usr;
+            var user = DataAccessFactory.AuthData().Authenticate(u => u.Email == email && u.Password == password);
+
+            if (user != null)
+            {
+                // create a new token for the user
+                var token = DataAccessFactory.UserData().CreateToken(user.Id);
+
+                return token;
+            }
+
+            return null;
         }
+
     }
 }

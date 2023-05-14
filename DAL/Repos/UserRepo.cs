@@ -1,11 +1,12 @@
 ﻿using DAL.Interfaces;
 using DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace DAL.Repos
 {
-    internal class UserRepo : Repo, IRepo<User, int, bool>, IAuth<bool>
+    internal class UserRepo : Repo, IRepo<User, int, bool>, IAuth<bool>, 
     {
         public UserRepo() : base() { }
 
@@ -17,6 +18,30 @@ namespace DAL.Repos
             return false;
         }
 
+        public string CreateToken(int userId)
+        {
+            var token = Guid.NewGuid().ToString("n");
+            var createdAt = DateTime.UtcNow;
+            var expiresAt = createdAt.AddDays(7); // token expires in 7 days
+
+            var newToken = new Token
+            {
+                UserId = userId,
+                TokenString = token,
+                CreatedAt = createdAt,
+                ExpiresAt = expiresAt
+            };
+
+            db.Tokens.Add(newToken);
+            db.SaveChanges();
+
+            return token;
+        }
+
+        public List<Token> GetTokens(int userId)
+        {
+            return DataAccessFactory.TokenData().GetAllByUserId(userId);
+        }
 
         public List<User> Get()
         {

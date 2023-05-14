@@ -22,5 +22,6 @@ namespace DAL
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Token> Tokens { get; set; }
     }
 }
