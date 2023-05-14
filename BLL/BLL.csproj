@@ -59,6 +59,7 @@
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\OrderDetailService.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\TokenServirce.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>

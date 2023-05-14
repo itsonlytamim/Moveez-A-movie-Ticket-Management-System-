@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IRepo<TYPE, ID, RET>
+    public interface IRepo<TYPE, ID, RET> 
     {
         List<TYPE> Get();
         TYPE Get(ID id);
         RET Insert(TYPE obj);
         RET Update(TYPE obj);
         bool Delete(ID id);
-        List<Token> GetAllByUserId(int userId);
     }
 }

@@ -41,6 +41,20 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
 
 
         }
+        [HttpGet]
+        [Route("{id}/login-activity")]
+        public HttpResponseMessage GetLoginActivity(int id)
+        {
+            try
+            {
+                var tokens = TokenService.GetTokens(id);
+                return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Success", Data = tokens });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = ex.Message });
+            }
+        }
     }
 }
 

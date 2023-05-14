@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DAL.Repos
 {
-    internal class UserRepo : Repo, IRepo<User, int, bool>, IAuth<bool>, 
+    internal class UserRepo : Repo, IRepo<User, int, bool>, IAuth<bool> 
     {
         public UserRepo() : base() { }
 
@@ -38,9 +38,9 @@ namespace DAL.Repos
             return token;
         }
 
-        public List<Token> GetTokens(int userId)
+        public List<Token> GetAllByUserId(int userId)
         {
-            return DataAccessFactory.TokenData().GetAllByUserId(userId);
+            return DataAccessFactory.TknData().GetAllByUserId(userId).ToList();
         }
 
         public List<User> Get()

@@ -59,5 +59,11 @@ namespace DAL
         {
             return new TokenRepo();
         }
+
+
+        public static IToken<Token, int, string> TknData()
+        {
+            return new TokenRepo();
+        }
     }
 }

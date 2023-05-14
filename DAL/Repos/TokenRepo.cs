@@ -2,7 +2,9 @@
 using DAL.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,65 +12,46 @@ namespace DAL.Repos
 {
     internal class TokenRepo : Repo, IRepo<Token, int, bool>
     {
-        public TokenRepo() : base() { }
 
-        public List<Token> GetAllByUserId(int userId)
+        public TokenRepo()
         {
-            return db.Tokens.Where(t => t.UserId == userId).ToList();
         }
 
-        public Token GetByTokenString(string tokenString)
+        public bool Insert(Token entity)
         {
-            return db.Tokens.FirstOrDefault(t => t.TokenString == tokenString);
-        }
-
-        public Token Get(int id)
-        {
-            return db.Tokens.Find(id);
-        }
-
-        public bool Insert(Token obj)
-        {
-
-            db.Tokens.Add(obj);
-            if (db.SaveChanges() > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            db.Tokens.Add(entity);
+            db.SaveChanges();
+            return true;
         }
 
         public bool Delete(int id)
         {
-            var tokens = db.Tokens.Find(id);
-            if (tokens != null)
+            var token = db.Tokens.Find(id);
+            if (token != null)
             {
-                db.Tokens.Remove(tokens);
-                if (db.SaveChanges() > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                db.Tokens.Remove(token);
+                db.SaveChanges();
+                return true;
             }
             return false;
         }
 
         public List<Token> Get()
         {
-            return db.Tokens.ToList();
+            return db.Tokens.Include(t => t.User).ToList();
         }
 
-        public bool Update(Token obj)
+        public Token Get(int id)
         {
-            throw new NotImplementedException();
+            return db.Tokens.Include(t => t.User).SingleOrDefault(t => t.Id == id);
+        }
+
+        public bool Update(Token entity)
+        {
+            db.Entry(entity).State = EntityState.Modified;
+            db.SaveChanges();
+            return true;
         }
     }
 }
-
 
