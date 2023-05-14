@@ -10,19 +10,17 @@ namespace BLL.Services
 {
     public class AuthService
     {
-        public static bool Authenticate(string email, string password)
-        {
-            return DataAccessFactory.AuthData().Authenticate(email, password);
-        }
+      
 
-        public static string Authenticate(string email, string password)
+        public User Authenticate(string email, string password)
         {
-            var user = DataAccessFactory.AuthData().Authenticate(u => u.Email == email && u.Password == password);
+            var user = DataAccessFactory.AuthData().Authenticate(email , password);
 
-            if (user != null)
+            if (user)
             {
                 // create a new token for the user
-                var token = DataAccessFactory.UserData().CreateToken(user.Id);
+
+                var token = DataAccessFactory.TokenData().Insert();
 
                 return token;
             }

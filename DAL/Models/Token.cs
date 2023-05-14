@@ -21,5 +21,9 @@ namespace DAL.Models
         public DateTime ExpiresAt { get; set; }
         [ForeignKey("UserId")]
         public User User { get; set; }
+        public Token()
+        {
+            CreatedAt = DateTime.UtcNow;
+        }
     }
 }

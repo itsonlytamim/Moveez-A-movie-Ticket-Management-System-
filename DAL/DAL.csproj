@@ -55,7 +55,6 @@
     <Compile Include="DataAccessFactory.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IRepo.cs" />
-    <Compile Include="Interfaces\IToken.cs" />
     <Compile Include="Migrations\202304141733384_AddingTables.cs" />
     <Compile Include="Migrations\202304141733384_AddingTables.designer.cs">
       <DependentUpon>202304141733384_AddingTables.cs</DependentUpon>

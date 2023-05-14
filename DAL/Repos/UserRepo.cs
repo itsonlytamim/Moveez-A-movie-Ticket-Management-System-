@@ -17,31 +17,7 @@ namespace DAL.Repos
             if (data != null) return true;
             return false;
         }
-
-        public string CreateToken(int userId)
-        {
-            var token = Guid.NewGuid().ToString("n");
-            var createdAt = DateTime.UtcNow;
-            var expiresAt = createdAt.AddDays(7); // token expires in 7 days
-
-            var newToken = new Token
-            {
-                UserId = userId,
-                TokenString = token,
-                CreatedAt = createdAt,
-                ExpiresAt = expiresAt
-            };
-
-            db.Tokens.Add(newToken);
-            db.SaveChanges();
-
-            return token;
-        }
-
-        public List<Token> GetAllByUserId(int userId)
-        {
-            return DataAccessFactory.TknData().GetAllByUserId(userId).ToList();
-        }
+       
 
         public List<User> Get()
         {
