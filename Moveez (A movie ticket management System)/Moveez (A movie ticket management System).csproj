@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Auth\Logged.cs" />
     <Compile Include="Controllers\ActorController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CartDetailController.cs" />

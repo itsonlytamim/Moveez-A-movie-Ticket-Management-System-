@@ -1,5 +1,6 @@
 ﻿using BLL.DTOs;
 using BLL.Services;
+using Moveez__A_movie_ticket_management_System_.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,7 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
         {
 
         }
-
-            [HttpGet]
+        [HttpGet]
             [Route("")]
             public HttpResponseMessage Get()
             {

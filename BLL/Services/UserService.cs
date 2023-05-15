@@ -44,7 +44,7 @@ namespace BLL.Services
 
             var res = DataAccessFactory.UserData().Insert(data);
 
-            return res =true;
+            return res=true;
         }
 
 
@@ -58,7 +58,7 @@ namespace BLL.Services
             var data = Convert(user);
             var res = DataAccessFactory.UserData().Update(data);
 
-            return res != null;
+            return res=true;
         }
 
         public static bool Update(int id, UserDTO user)
@@ -76,7 +76,7 @@ namespace BLL.Services
             existingUser.Photo = user.Photo;
             var res = DataAccessFactory.UserData().Update(existingUser);
 
-            return res != null;
+            return res=true;
         }
 
 

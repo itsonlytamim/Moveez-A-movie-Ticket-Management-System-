@@ -1,5 +1,6 @@
 ﻿using BLL.DTOs;
 using BLL.Services;
+using Moveez__A_movie_ticket_management_System_.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
         {
 
         }
-
+        [Logged]
         [HttpGet]
         [Route("")]
         public HttpResponseMessage Get()
@@ -86,12 +87,12 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = "Not Inserted", Data = user });
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, new { Msg = "Could not Create User, Error"});
                 }
             }
             catch (Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = ex.Message, Data = user });
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Msg = ex.Message, Data = user });
             }
         }
 
