@@ -28,7 +28,7 @@ public class CinemahallService
 
 
 
-        return res != null;
+        return res = true;
     }
 
 
@@ -47,7 +47,7 @@ public class CinemahallService
 
 
 
-        return res != null;
+        return res = true;
     }
 
 
@@ -71,7 +71,7 @@ public class CinemahallService
 
 
 
-        return res != null;
+        return res = true;
     }
 
 

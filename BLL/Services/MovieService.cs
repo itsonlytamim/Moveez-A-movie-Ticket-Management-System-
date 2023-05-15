@@ -27,7 +27,7 @@ namespace BLL.Services
             var data = Convert(movie);
             var res = DataAccessFactory.MovieData().Insert(data);
 
-            if (res != null) return true;
+            if (res = true) return true;
             return false;
         }
 
@@ -89,7 +89,7 @@ namespace BLL.Services
             var data = Convert(movie);
             var res = DataAccessFactory.MovieData().Update(data);
 
-            if (res != null) return true;
+            if (res = true) return true;
             return false;
         }
 
@@ -112,7 +112,7 @@ namespace BLL.Services
 
             var res = DataAccessFactory.MovieData().Update(existingMovie);
 
-            if (res != null) return true;
+            if (res = true) return true;
             return false;
         }
 

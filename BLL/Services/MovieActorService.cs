@@ -27,17 +27,32 @@ namespace BLL.Services
             var data = Convert(movieActor);
             var res = DataAccessFactory.MovieActorData().Insert(data);
 
-            if (res != null) return true;
+            if (res = true) return true;
             return false;
         }
 
-        public static bool Update(MovieActorDTO movieActor)
+        public static bool Update(int Id, MovieActorDTO movieActor)
         {
-            var data = Convert(movieActor);
-            var res = DataAccessFactory.MovieActorData().Update(data);
+            var existingMovieActor = DataAccessFactory.MovieactorData().Get(Id);
+            if (existingMovieActor == null) return false;
 
-            if (res != null) return true;
-            return false;
+
+
+            
+            existingMovieActor.MovieId = movieActor.MovieId;
+            existingMovieActor.ActorId = movieActor.ActorId;
+            
+            
+
+
+
+            var res = DataAccessFactory.MovieactorData().Update(existingMovieActor);
+
+
+
+            return res = true;
+
+           
         }
 
         public static bool Delete(int id)

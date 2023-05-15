@@ -13,7 +13,7 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
     [RoutePrefix("api/movie-actors")]
     public class MovieActorController : ApiController
     {
-        /*public MovieActorController()
+        public MovieActorController()
          {
 
          }
@@ -113,6 +113,5 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
                  return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Msg = ex.Message });
              }
          }
-     }*/
+     }
     }
-}

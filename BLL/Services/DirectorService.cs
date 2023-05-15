@@ -28,7 +28,7 @@ namespace BLL.Services
             var data = Convert(director);
             var res = DataAccessFactory.DirectorData().Insert(data);
 
-            if (res != null) return true;
+            if (res = true) return true;
             return false;
         }
 
@@ -47,7 +47,7 @@ namespace BLL.Services
 
             var res = DataAccessFactory.DirectorData().Update(existingDirector);
 
-            if (res != null) return true;
+            if (res = true) return true;
             return false;
         }
 

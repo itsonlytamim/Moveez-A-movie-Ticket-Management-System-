@@ -58,7 +58,7 @@ namespace BLL.Services
             var data = Convert(user);
             var res = DataAccessFactory.UserData().Update(data);
 
-            return res != null;
+            return res = true;
         }
 
         public static bool Update(int id, UserDTO user)

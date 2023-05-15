@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Moveez__A_movie_ticket_management_System_
 {
@@ -10,7 +11,8 @@ namespace Moveez__A_movie_ticket_management_System_
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
             // Web API routes
             config.MapHttpAttributeRoutes();
 
@@ -19,6 +21,9 @@ namespace Moveez__A_movie_ticket_management_System_
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            
+
+
         }
     }
 }

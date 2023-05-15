@@ -55,5 +55,10 @@ namespace DAL
             return new OrderDetailRepo();
         }
 
+        public static IRepo<MovieActor, int, bool> MovieactorData()
+        {
+            return new MovieActorRepo();
+        }
+
     }
 }

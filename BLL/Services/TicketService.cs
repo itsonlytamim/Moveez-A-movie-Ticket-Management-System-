@@ -27,7 +27,7 @@ namespace BLL.Services
         {
             var data = Convert(ticket);
             var res = DataAccessFactory.TicketData().Insert(data);
-            if (res != null)
+            if (res = true)
             {
                 return true;
             }
@@ -38,7 +38,7 @@ namespace BLL.Services
         {
             var data = Convert(ticket);
             var res = DataAccessFactory.TicketData().Update(data);
-            if (res != null)
+            if (res = true)
             {
                 return true;
             }

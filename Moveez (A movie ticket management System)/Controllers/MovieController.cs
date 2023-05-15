@@ -6,23 +6,22 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Moveez__A_movie_ticket_management_System_.Controllers
 {
-    
 
 
 
-    
-        [RoutePrefix("api/movies")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+
+    [RoutePrefix("api/movies")]
         public class MovieController : ApiController
         {
         public MovieController()
         {
 
         }
-
-       
 
             [HttpGet]
             [Route("")]
