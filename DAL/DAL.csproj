@@ -53,7 +53,9 @@
   <ItemGroup>
     <Compile Include="AppContext.cs" />
     <Compile Include="DataAccessFactory.cs" />
+    <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IRepo.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Migrations\202304141733384_AddingTables.cs" />
     <Compile Include="Migrations\202304141733384_AddingTables.designer.cs">
       <DependentUpon>202304141733384_AddingTables.cs</DependentUpon>
@@ -61,6 +63,10 @@
     <Compile Include="Migrations\202305021743147_usertablemodify.cs" />
     <Compile Include="Migrations\202305021743147_usertablemodify.designer.cs">
       <DependentUpon>202305021743147_usertablemodify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305151914094_tokendb.cs" />
+    <Compile Include="Migrations\202305151914094_tokendb.designer.cs">
+      <DependentUpon>202305151914094_tokendb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Actor.cs" />
@@ -74,6 +80,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Ticket.cs" />
+    <Compile Include="Models\Token.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\ActorRepo.cs" />
@@ -88,6 +95,7 @@
     <Compile Include="Repos\OrderRepo.cs" />
     <Compile Include="Repos\Repo.cs" />
     <Compile Include="Repos\TicketRepo.cs" />
+    <Compile Include="Repos\TokenRepo.cs" />
     <Compile Include="Repos\UserRepo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305021743147_usertablemodify.resx">
       <DependentUpon>202305021743147_usertablemodify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305151914094_tokendb.resx">
+      <DependentUpon>202305151914094_tokendb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

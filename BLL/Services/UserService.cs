@@ -76,7 +76,7 @@ namespace BLL.Services
             existingUser.Photo = user.Photo;
             var res = DataAccessFactory.UserData().Update(existingUser);
 
-            return res != null;
+            return res = true;
         }
 
 

@@ -59,6 +59,41 @@ namespace DAL
         {
             return new MovieActorRepo();
         }
+        public static IRepo<Cart, int, bool> CartData()
+        {
+            return new CartRepo();
+        }
 
+
+
+        public static IRepo<CartDetail, int, bool> CartDetailData()
+        {
+
+
+
+            return new CartDetailRepo();
+        }
+
+
+
+        public static IRepo<Notification, int, bool> NotificationData()
+        {
+
+
+
+            return new NotificationRepo();
+        }
+
+
+
+        public static IAuth<bool> AuthData()
+        {
+            return new UserRepo();
+        }
+
+        public static IRepo<Token, int, bool> TokenData()
+        {
+            return new TokenRepo();
+        }
     }
 }
