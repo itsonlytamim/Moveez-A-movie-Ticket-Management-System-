@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Admin Dashboard</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('userCtrl', function ($scope, $http, $location) {
+			// Get the token ID from the query string
+			var tokenId = location.search.split('=')[1];
+
+			// Make a request to the API to get the user's data
+			$http({
+				method: 'GET',
+				url: 'https://localhost:44345/api/users/get/' + tokenId
+			}).then(function successCallback(response) {
+				// Display the user's data
+				$scope.user = response.data.Data;
+			}, function errorCallback(response) {
+				// Display an error message
+				$scope.errorMsg = response.data.Msg;
+			});
+		});
+	</script>
+</head>
+<body ng-controller="userCtrl">
+	<h1>Admin Profile</h1>
+	<div ng-if="user">
+		<p>Name: {{user.Name}}</p>
+		<p>Email: {{user.Email}}</p>
+	</div>
+	<div ng-if="errorMsg">
+		<p>{{errorMsg}}</p>
+	</div>
+</body>
+</html>

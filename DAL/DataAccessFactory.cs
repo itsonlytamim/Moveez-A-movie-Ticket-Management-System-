@@ -19,6 +19,27 @@ namespace DAL
         {
             return new MovieRepo();
         }
+
+        public static IRepo<Director, int, bool> DirectorData()
+        {
+            return new DirectorRepo();
+        }
+
+        public static IRepo<MovieActor, int, bool> MovieActorData()
+        {
+            return new MovieActorRepo();
+        }
+
+        public static IRepo<Ticket, int, bool> TicketData()
+        {
+            return new TicketRepo();
+        }
+
+        public static IRepo<Cinemahall, int, bool> CinemahallData()
+        {
+            return new CinemahallRepo();
+        }
+
         public static IRepo<User, int, bool> UserData()
         {
             return new UserRepo();
@@ -34,21 +55,36 @@ namespace DAL
             return new OrderDetailRepo();
         }
 
+        public static IRepo<MovieActor, int, bool> MovieactorData()
+        {
+            return new MovieActorRepo();
+        }
         public static IRepo<Cart, int, bool> CartData()
         {
             return new CartRepo();
         }
 
-        public static IRepo<CartDetail,int, bool> CartDetailData() {
+
+
+        public static IRepo<CartDetail, int, bool> CartDetailData()
+        {
+
+
 
             return new CartDetailRepo();
         }
 
+
+
         public static IRepo<Notification, int, bool> NotificationData()
         {
 
+
+
             return new NotificationRepo();
         }
+
+
 
         public static IAuth<bool> AuthData()
         {

@@ -19,7 +19,4 @@ namespace BLL.DTOs
         public int DirectorId { get; set; }
         public int CinemahallId { get; set; }
     }
-
-
-
 }

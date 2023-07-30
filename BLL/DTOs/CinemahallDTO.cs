@@ -5,15 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.DTOs
+
+
 {
-    public class OrderDetailDTO
+    public class CinemahallDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Quantity { get; set; }
-        public int Price { get; set; }
-        public int MovieId { get; set; }
-        public int OrderId { get; set; }
-    }
+        public string Description { get; set; }
+        public string SeatNo { get; set; }
 
+        public int Capacity { get; set; }
+
+        public string Location { get; set; }
+
+    }
 }

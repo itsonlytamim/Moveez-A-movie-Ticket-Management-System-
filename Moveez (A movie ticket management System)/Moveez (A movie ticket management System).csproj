@@ -102,11 +102,15 @@
     <Compile Include="Controllers\ActorController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CartDetailController.cs" />
+    <Compile Include="Controllers\CinemahallController.cs" />
+    <Compile Include="Controllers\DirectorController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MovieActorController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OrderDetailController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
