@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>User Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 20px;
+		}
+
+		h1 {
+			color: #333;
+		}
+
+		.navbar {
+			background-color: #007bff;
+			color: #fff;
+			padding: 10px;
+		}
+
+		.navbar a {
+			color: #fff;
+			margin-right: 10px;
+			text-decoration: none;
+		}
+
+		 .movie {
+            margin: 10px;
+            width: 300px;
+            height: 500px;
+            background-color: #eee;
+            box-shadow: 0px 0px 10px #888;
+            overflow: hidden;
+        }
+        .movie img {
+            width: 100%;
+            height: 70%;
+            object-fit: cover;
+        }
+        .movie h2 {
+            margin: 10px;
+            font-size: 20px;
+        }
+        .movie p {
+            margin: 10px;
+            font-size: 14px;
+            line-height: 1.4;
+            height: 170px;
+            overflow: hidden;
+        }
+	</style>
+	<script>
+    var app = angular.module("myApp", ["ngRoute"]);
+    
+
+    app.controller("myCtrl", function ($scope, $http, $window) {
+        $http({
+            method: "GET",
+            url: "https://localhost:44345/api/movies"
+        }).then(function (response) {
+            $scope.movies = response.data.Data;
+        });
+        var tokenId = $window.location.search.substr(1).split("=")[1];
+
+        $scope.goToProfile = function () {
+				// Get the token ID from the query string
+
+				// Redirect to the Editprofile page with the tokenId as a query parameter
+				$window.location.href = "Editprofile.html?tokenId=" + tokenId;
+			};
+        $scope.goToOrders = function () {
+				// Get the token ID from the query string
+
+				// Redirect to the Editprofile page with the tokenId as a query parameter
+				$window.location.href = "Orders.html?tokenId=" + tokenId;
+			};
+    });
+</script>
+
+</head>
+<body ng-controller="myCtrl">
+	
+    <div class="container">
+        <h1 class="text-center">Moveez</h1>
+        <br>  <br>
+        <div class="text-center">
+		<button class="btn btn-primary" ng-click="goToProfile()">Edit Profile</button>
+	    </div>
+        <br>
+        <div class="text-center">
+		<button class="btn btn-primary" ng-click="goToOrders()">Show Orders</button>
+	    </div>
+        <h3 class="text-center">Available Cinemas</h3>
+        <br>  <br>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="movie in movies">
+                <div class="movie">
+                    <img ng-src="{{movie.ImageUrl}}">
+                    <h2>{{movie.Title}}</h2>
+                    <p>{{movie.Description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

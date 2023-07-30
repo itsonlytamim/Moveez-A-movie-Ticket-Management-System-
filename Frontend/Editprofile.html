@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>User Profile</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('userCtrl', function ($scope, $http, $location) {
+			// Get the token ID from the query string
+			var tokenId = location.search.split('=')[1];
+
+			// Make a request to the API to get the user's data
+			$http({
+				method: 'GET',
+				url: 'https://localhost:44345/api/users/get/' + tokenId
+			}).then(function successCallback(response) {
+				// Display the user's data
+				$scope.user = response.data.Data;
+
+				// Check if the user is authorized
+				if ($scope.user.Role !== 'admin') {
+					// Not authorized, redirect to login page or display an error message
+					$location.path('/login');
+				}
+			}, function errorCallback(response) {
+				// Display an error message
+				$scope.errorMsg = response.data.Msg;
+			});
+
+			// Function to update user data
+			$scope.updateUser = function () {
+				
+				$http({
+					method: 'PUT',
+					url: 'https://localhost:44345/api/users/update/' + $scope.user.Id,
+					headers: { 'Content-Type': 'application/json' },
+					data: $scope.user
+				}).then(function successCallback(response) {
+					// Handle success response
+					alert('User data updated successfully.');
+				}, function errorCallback(response) {
+					// Handle error response
+					alert('Error updating user data.');
+					console.log(response);
+				});
+			};
+
+			// Function to delete user
+			$scope.deleteUser = function () {
+				// Check if the user is authorized
+				if ($scope.user.Role !== 'admin') {
+					// Not authorized, redirect to login page or display an error message
+					alert('Not Authorized for Delete.');
+					return;
+				}
+
+				$http({
+					method: 'DELETE',
+					url: 'https://localhost:44345/api/users/delete/' + $scope.user.Id
+				}).then(function successCallback(response) {
+					// Handle success response
+					alert('User deleted successfully.');
+					// Redirect to login page or any other desired page
+					$location.path('/login');
+				}, function errorCallback(response) {
+					// Handle error response
+					alert('Error deleting user.');
+					console.log(response);
+				});
+			};
+		});
+	</script>
+</head>
+<body ng-controller="userCtrl">
+	<h1>User Profile</h1>
+	<div ng-if="user">
+		<p>Name: <input type="text" ng-model="user.Name"></p>
+		<p>Email: <input type="text" ng-model="user.Email"></p>
+		<button ng-click="updateUser()">Update</button>
+		<button ng-click="deleteUser()">Delete</button>
+	</div>
+	<div ng-if="errorMsg">
+		<p>{{errorMsg}}</p>
+	</div>
+</body>
+</html>
+

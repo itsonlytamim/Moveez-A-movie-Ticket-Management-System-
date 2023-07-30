@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Login</title>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+ 
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('loginCtrl', function ($scope, $http, $window) {
+  $scope.login = function () {
+    $http({
+      method: 'POST',
+      url: 'https://localhost:44345/api/login',
+      headers: { 'Content-Type': 'application/json' },
+      data: { Email: $scope.email, Password: $scope.password }
+    }).then(function successCallback(response) {
+      // login successful, handle response here
+      console.log(response);
+    window.location.href = response.data.RedirectUrl + "?tokenId=" + response.data.Data;
+    }, function errorCallback(response) {
+      // login failed, handle error here
+      console.log(response);
+			$scope.errorMsg = response.data.Message;
+    });
+  };
+});
+
+	</script>
+</head>
+
+<body ng-controller="loginCtrl">
+  <div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+	        <h2>Login</h2>
+	           <form>
+                <div class="form-group">
+		<label for="email">Email:</label>
+		<input type="email" class="form-control"  name="email" ng-model="email"  placeholder="Enter your Email" required>
+    </div>
+    <div class="form-group">
+		<label for="password">Password:</label>
+		<input type="password" class="form-control"  name="password" ng-model="password"  placeholder="Enter your password" required>
+    </div>
+		<button type="submit" class="btn btn-primary" ng-click="login()">Login</button> 
+	</form>
+     
+  <div ng-if="errorMsg" class="form-group">
+		<p>{{errorMsg}}</p>
+	</div>
+     </div>
+  </div>
+</div>
+</body>
+</html>

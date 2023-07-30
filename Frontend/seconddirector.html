@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Director Management</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('DirectorCtrl', ['$scope', '$http', function($scope, $http) {
+			$scope.director = {};
+			$scope.directors = [];
+
+			// Retrieve all directors
+			$http.get('/api/directors').then(function(response) {
+				$scope.directors = response.data.Data;
+			});
+
+			// Add a new director
+			$scope.addDirector = function() {
+				$http.post('https://localhost:44345/api/directors/add', $scope.director).then(function(response) {
+					$scope.directors.push(response.data.Data);
+					$scope.director = {};
+				});
+			};
+
+			// Update an existing director
+			$scope.updateDirector = function(director) {
+				$http.put('https://localhost:44345/api/directors/update/' + director.Id, director).then(function(response) {
+					var index = $scope.directors.findIndex(function(d) {
+						return d.Id === director.Id;
+					});
+					$scope.directors[index] = response.data.Data;
+				});
+			};
+
+			// Delete an existing director
+			$scope.deleteDirector = function(director) {
+				$http.delete('https://localhost:44345/api/directors/delete/' + director.Id).then(function(response) {
+					var index = $scope.directors.findIndex(function(d) {
+						return d.Id === director.Id;
+					});
+					$scope.directors.splice(index, 1);
+				});
+			};
+
+			// Search for directors by directorId
+			$scope.search = function() {
+				if ($scope.searchText) {
+					$http.get('https://localhost:44345/api/directors?directorId=' + $scope.searchText).then(function(response) {
+						$scope.directors = response.data.Data;
+					});
+				} else {
+					$http.get('https://localhost:44345/api/directors').then(function(response) {
+						$scope.directors = response.data.Data;
+					});
+				}
+			};
+		}]);
+	</script>
+</head>
+<body ng-controller="DirectorCtrl">
+	<h1>Director Management</h1>
+
+	<!-- Add a new director -->
+	<form ng-submit="addDirector()">
+		<label for="name">Name:</label>
+		<input type="text" id="name" ng-model="director.Name" required>
+		<label for="age">Age:</label>
+		<input type="number" id="age" ng-model="director.Age" required>
+		<button type="submit">Add Director</button>
+	</form>
+
+	<!-- List all directors -->
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="director in directors">
+				<td>{{director.Id}}</td>
+				<td>{{director.Name}}</td>
+				<td>{{director.Age}}</td>
+				<td>
+					<button ng-click="updateDirector(director)">Update</button>
+					<button ng-click="deleteDirector(director)">Delete</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- Search for directors by directorId -->
+	<form ng
+    <form ng-submit="search()">
+        <label for="searchText">Search by Director ID:</label>
+        <input type="text" id="searchText" ng-model="searchText">
+        <button type="submit">Search</button>
+    </form>
+    </body>
+    </html>

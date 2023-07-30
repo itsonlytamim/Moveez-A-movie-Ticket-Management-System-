@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>User Profile</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      width: 200px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+  <script>
+    var app = angular.module('myApp', []);
+
+    app.service('OrderService', function($http) {
+      this.getOrdersByUserId = function(userId) {
+        return $http.get('https://localhost:44345/api/orders?UserId=' + userId);
+      };
+    });
+
+    app.service('OrderDetailService', function($http) {
+      this.getOrderDetailsByOrderId = function(orderId) {
+        return $http.get('https://localhost:44345/api/orderdetail?OrderId=' + orderId);
+      };
+    });
+
+    app.service('MovieService', function($http) {
+      this.getMovieById = function(movieId) {
+        return $http.get('https://localhost:44345/api/movies/' + movieId);
+      };
+    });
+
+    app.controller('orderCtrl', function($scope, $http, $location, OrderService, OrderDetailService, MovieService) {
+      // Get the token ID from the query string
+      var tokenId = location.search.split('=')[1];
+
+      // Make a request to the API to get the user's data
+      $http({
+        method: 'GET',
+        url: 'https://localhost:44345/api/users/get/' + tokenId
+      }).then(function successCallback(response) {
+        // Display the user's data
+        $scope.user = response.data.Data;
+
+        // Check if the user is authorized
+
+        // Get the user's orders
+        OrderService.getOrdersByUserId($scope.user.Id)
+          .then(function(response) {
+            $scope.orders = response.data.Data;
+
+            // Get the order details for each order
+            angular.forEach($scope.orders, function(order) {
+              OrderDetailService.getOrderDetailsByOrderId(order.Id)
+                .then(function(response) {
+                  order.orderDetails = response.data.Data;
+
+                  // Get the movie details for each order detail
+                  angular.forEach(order.orderDetails, function(orderDetail) {
+                    MovieService.getMovieById(orderDetail.MovieId)
+                      .then(function(response) {
+                        orderDetail.movie = response.data.Data;
+                      })
+                      .catch(function(error) {
+                        $scope.errorMsg = error.data.Msg;
+                      });
+                  });
+                })
+                .catch(function(error) {
+                  $scope.errorMsg = error.data.Msg;
+                });
+            });
+          })
+          .catch(function(error) {
+            $scope.errorMsg = error.data.Msg;
+});
+}, function errorCallback(response) {
+// Display an error message
+$scope.errorMsg = response.data.Msg;
+});
+});
+</script>
+
+</head>
+<body ng-controller="orderCtrl">
+  <h1>Order Details</h1>
+  <div ng-if="user">
+    <table>
+      <tr>
+        <th>Order Date</th>
+        <th>Movie Title</th>
+        <th>Order Quantity</th>
+        <th>Order Price</th>
+      </tr>
+      <tr ng-repeat="order in orders">
+        <td>{{ order.OrderDate }}</td>
+        <td>
+          <ul>
+            <li ng-repeat="orderDetail in order.orderDetails">
+              {{ orderDetail.movie.Title }}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li ng-repeat="orderDetail in order.orderDetails">
+              {{ orderDetail.Quantity }}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li ng-repeat="orderDetail in order.orderDetails">
+              {{ orderDetail.Price }}
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div ng-if="errorMsg">
+    <p>{{ errorMsg }}</p>
+  </div>
+</body>
+</html>

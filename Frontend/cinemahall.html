@@ -1,0 +1,113 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Cinemahalls</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<script>
+	var app = angular.module("myApp", []);
+	app.controller("CinemahallController", function($scope, $http) {
+		
+		// Function to get all cinemahalls
+		$scope.getCinemahalls = function() {
+			$http.get("https://localhost:44345/api/cinemahalls")
+			.then(function(response) {
+				$scope.cinemahalls = response.data.Data;
+			});
+		};
+		
+		// Function to get a cinemahall by ID
+		$scope.getCinemahall = function(id) {
+			$http.get("https://localhost:44345/api/cinemahalls/" + id)
+			.then(function(response) {
+				$scope.cinemahall = response.data.Data;
+			});
+		};
+		
+		// Function to add a new cinemahall
+		$scope.addCinemahall = function(cinemahall) {
+			$http.post("https://localhost:44345/api/cinemahalls/add", cinemahall)
+			.then(function(response) {
+				$scope.cinemahalls.push(cinemahall);
+				$scope.newCinemahall = {};
+			});
+		};
+		
+		// Function to update a cinemahall
+		$scope.updateCinemahall = function(cinemahall) {
+			$http.put("https://localhost:44345/api/cinemahalls/update/" + cinemahall.Id, cinemahall)
+			.then(function(response) {
+				$scope.getCinemahalls();
+			});
+		};
+		
+		// Function to delete a cinemahall
+		$scope.deleteCinemahall = function(id) {
+			$http.delete("https://localhost:44345/api/cinemahalls/delete/" + id)
+			.then(function(response) {
+				$scope.getCinemahalls();
+			});
+		};
+		
+		// Initialize
+		$scope.getCinemahalls();
+	});
+	</script>
+</head>
+<body>
+	<div ng-controller="CinemahallController">
+		<h1>Cinemahalls</h1>
+		
+		<!-- List of cinemahalls -->
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Capacity</th>
+				<th>Location</th>
+				<th>Action</th>
+			</tr>
+			<tr ng-repeat="cinemahall in cinemahalls">
+				<td>{{cinemahall.Id}}</td>
+				<td>{{cinemahall.Name}}</td>
+				<td>{{cinemahall.Capacity}}</td>
+				<td>{{cinemahall.Location}}</td>
+				<td>
+					<button ng-click="getCinemahall(cinemahall.Id)">View</button>
+					<button ng-click="deleteCinemahall(cinemahall.Id)">Delete</button>
+				</td>
+			</tr>
+		</table>
+		
+		<!-- Form for adding or editing a cinemahall -->
+		<h2 ng-if="!cinemahall">Add Cinemahall</h2>
+		<h2 ng-if="cinemahall">Edit Cinemahall {{cinemahall.Id}}</h2>
+		<form ng-submit="addCinemahall(newCinemahall
+
+)">
+			<label>Name:</label>
+			<input type="text" ng-model="newCinemahall.Name" required>
+			<label>Capacity:</label>
+			<input type="number" ng-model="newCinemahall.Capacity" required>
+			<label>Location:</label>
+			<input type="text" ng-model="newCinemahall.Location" required>
+			<button ng-if="!cinemahall" type="submit">Add</button>
+			<button ng-if="cinemahall" type="submit">Save Changes</button>
+			<button ng-if="cinemahall" ng-click="cinemahall = null">Cancel</button>
+		</form>
+		
+		<!-- Details of a cinemahall -->
+		<div ng-if="cinemahall">
+			<h2>Cinemahall {{cinemahall.Id}}</h2>
+			<p>Name: {{cinemahall.Name}}</p>
+			<p>Capacity: {{cinemahall.Capacity}}</p>
+			<p>Location: {{cinemahall.Location}}</p>
+			<button ng-click="cinemahall = null">Back to List</button>
+			<button ng-click="deleteCinemahall(cinemahall.Id)">Delete Cinemahall</button>
+			<button ng-click="cinemahall = null; newCinemahall = {}">Add New Cinemahall</button>
+			<button ng-click="getCinemahall(cinemahall.Id)">Refresh</button>
+			<button ng-click="updateCinemahall(cinemahall)">Save Changes</button>
+		</div>
+	</div>
+</body>
+</html>

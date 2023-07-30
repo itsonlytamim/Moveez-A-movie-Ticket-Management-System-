@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ticket Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        .ticket-details {
+            margin: 10px;
+            width: 300px;
+            height: 500px;
+            background-color: #eee;
+            box-shadow: 0px 0px 10px #888;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .ticket-details h2 {
+            margin: 10px;
+            font-size: 20px;
+        }
+        .ticket-details p {
+            margin: 10px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div class="container">
+        <h1 class="text-center">Ticket Details</h1>
+        <br>  <br>
+        <h3 class="text-center">Interstellar</h3>
+        <br>  <br>
+
+        <div class="ticket-details">
+            <h2>{{ticket.MovieTitle}}</h2>
+            <p><strong>Seat Number:</strong> {{ticket.SeatNumber}}</p>
+            <p><strong>Showtime:</strong> {{ticket.Showtime}}</p>
+            <p><strong>Price:</strong> {{ticket.Price}}</p>
+            <p><strong>Status:</strong> {{ticket.Status}}</p>
+        </div>
+    </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope, $http) {
+            $http({
+                method: 'GET',
+                url: 'https://localhost:44345/api/tickets' 
+            }).then(function (response) {
+                $scope.ticket = response.data.Data;
+            });
+        });
+    </script>
+</body>
+</html>

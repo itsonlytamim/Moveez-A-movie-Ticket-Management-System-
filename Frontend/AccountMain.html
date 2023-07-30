@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Account Creation</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="UserCtrl">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<h2>Account Creation</h2>
+				<form name="myForm" ng-submit="Add()" >
+					<div class="form-group">
+						<label for="name">Name:</label>
+						<input type="text" required  maxlength="60" ng-pattern="/^[a-zA-Z. ]*[a-zA-Z]{1,60}$/" class="form-control" id="name" ng-model="name" placeholder="Enter your name" required ng-pattern="/^[a-zA-Z\s]*$/">
+						<div ng-show="myForm.name.$error.required && (formSubmitted || myForm.name.$dirty)" style="color:red;">Name is required.</div>
+						<div ng-show="myForm.name.$error.pattern" style="color:red;">Invalid name. Please use only non-numeric characters.</div>
+					</div>
+
+					<div class="form-group">
+						<label for="email">Email:</label>
+						<input type="email" class="form-control" id="email" ng-model="email" placeholder="Enter your email" required>
+						<div ng-show="myForm.email.$error.required && (formSubmitted || myForm.email.$dirty)" style="color:red;">Email is required.</div>
+						<div ng-show="myForm.email.$error.email && (formSubmitted || myForm.email.$dirty)" style="color:red;">Invalid email address.</div>
+					</div>
+
+					<div class="form-group">
+						<label for="password">Password:</label>
+						<input type="password" class="form-control" id="password" ng-model="password" placeholder="Enter your password" required ng-minlength="3" ng-maxlength="20">
+						<div ng-show="myForm.password.$error.required && (formSubmitted || myForm.password.$dirty)" style="color:red;">Password is required.</div>
+					<div ng-show="myForm.password.$error.password && (formSubmitted || myForm.password.$dirty)" style="color:red;">Password format is not correct.</div>
+
+					</div>
+
+					<div class="form-group">
+						<label for="confirmPassword">Confirm Password:</label>
+						<input type="password" class="form-control" id="confirmPassword" ng-model="confirmPassword" placeholder="Confirm your password" required ng-pattern="password">
+						<div ng-show="myForm.confirmPassword.$error.required && (formSubmitted || myForm.confirmPassword.$dirty)" style="color:red;">Confirmation password is required.</div>
+						<div ng-show="myForm.confirmPassword.$error.pattern && (formSubmitted || myForm.confirmPassword.$dirty)" style="color:red;">Passwords do not match.</div>
+					</div>
+
+					<div class="form-group">
+						<label for="phone">Phone:</label>
+						<input type="text" class="form-control" id="phone" ng-model="phone" placeholder="Enter your phone number" required pattern="^\d{11}$">
+						<div ng-show="myForm.phone.$error.required && (formSubmitted || myForm.phone.$dirty)" style="color:red;">Phone number is required.</div>
+						<div ng-show="myForm.phone.$error.pattern && (formSubmitted || myForm.phone.$dirty)" style="color:red;">Invalid phone number. Please enter a 11-digit value.</div>
+					</div>
+
+					<div class="form-group">
+						<label for="dob">Date of Birth:</label>
+						<input type="date" class="form-control" id="dob" ng-model="dob" placeholder="Enter your date of birth" required>
+              <div ng-show="myForm.dob.$error.required && (formSubmitted || myForm.dob.$dirty)" style="color:red;">Date of Birth is required.</div>
+                            </div>
+									<div class="form-group">
+					<label for="gender">Gender:</label>
+					<select class="form-control" id="gender" ng-model="gender" required>
+						<option value="" disabled selected>Select your gender</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+						<option value="Other">Other</option>
+					</select>
+					<div ng-show="myForm.gender.$error.required && (formSubmitted || myForm.gender.$dirty)" style="color:red;">Gender is required.</div>
+				</div>
+
+				<div class="form-group">
+					<label for="address">Address:</label>
+					<textarea class="form-control" id="address" ng-model="address" placeholder="Enter your address" required></textarea>
+					<div ng-show="myForm.address.$error.required && (formSubmitted || myForm.address.$dirty)" style="color:red;">Address is required.</div>
+				</div>
+
+				<div class="form-group">
+					<label for="photoUrl">Photo URL:</label>
+					<input type="text" class="form-control" id="photoUrl" ng-model="photoUrl" placeholder="Enter your photo URL" required>
+					<div ng-show="myForm.photoUrl.$error.required && (formSubmitted || myForm.photoUrl.$dirty)" style="color:red;">Photo URL is required.</div>
+				</div>
+
+				<button type="submit" class="btn btn-primary" >Create Account</button>
+			</form>
+			
+			<div ng-if="errorMsg" class="form-group">
+		<p><br><br>{{errorMsg}}</p>
+	</div>
+		</div>
+	</div>
+</div>
+
+</body>
+	<script>
+  var app = angular.module('myApp', []);
+  app.controller('UserCtrl', function($scope, $http, $window) {
+    $scope.formSubmitted = false;
+
+    $scope.Add = function() {
+      if ($scope.myForm.$valid) {
+        // Form is valid, perform actions (e.g., submit to server)
+        $http({
+          method: 'POST',
+          url: 'https://localhost:44345/api/users/add',
+          headers: { 'Content-Type': 'application/json' },
+          data: {
+            Name: $scope.name,
+            Email: $scope.email,
+            Password: $scope.password,
+            Role: "user",
+            Phone: $scope.phone,
+            DateOfBirth: $scope.dob,
+            Gender: $scope.gender,
+            IsVerified: 1,
+            Address: $scope.address,
+            Photo: $scope.photoUrl
+          }
+        })
+        .then(function(response) {
+          // Handle success response
+          $window.location.href = 'login.html'; // Redirect to login.html
+        }, function errorCallback(response) {
+          // login failed, handle error here
+          console.log(response);
+          $scope.errorMsg = response.data.Msg;
+        });
+      } else {
+        $scope.formSubmitted = true;
+        angular.forEach($scope.myForm.$error, function(field) {
+          //field.$setTouched();
+        });
+      }
+    };
+  });
+</script>
+
+</html>

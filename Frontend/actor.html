@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Actor List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="ActorController">
+    <h1>Actor List</h1>
+    <input type="text" ng-model="search" placeholder="Search actor...">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Nationality</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="actor in actors | filter:search">
+                <td>{{actor.Name}}</td>
+                <td>{{actor.Age}}</td>
+                <td>{{actor.Gender}}</td>
+                <td>{{actor.Nationality}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("ActorController", function ($scope, $http) {
+            $http.get("https://localhost:44345/api/Actors").then(function (response) {
+                $scope.actors = response.data;
+            });
+        });
+    </script>
+</body>
+</html>
