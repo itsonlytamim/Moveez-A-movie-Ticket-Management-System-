@@ -32,7 +32,7 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
                         Status = "Success",
                         Message = "Login successful",
                         Data = tokenId,
-                        RedirectUrl = "E:\\dotnwt repos\\Moveez (A movie ticket management System)\\Frontend\\admin.html"
+                        RedirectUrl = "D:\\projects asp\\Moveez-A-movie-Ticket-Management-System-\\Frontend\\admin.html"
                     });
                 }
                 else
@@ -42,7 +42,7 @@ namespace Moveez__A_movie_ticket_management_System_.Controllers
                         Status = "Success",
                         Message = "Login successful",
                         Data = tokenId,
-                        RedirectUrl = "E:\\dotnwt repos\\Moveez (A movie ticket management System)\\Frontend\\homeuser.html"
+                        RedirectUrl = "D:\\projects asp\\Moveez-A-movie-Ticket-Management-System-\\Frontend\\homeuser.html"
                     });
                 }
             }
